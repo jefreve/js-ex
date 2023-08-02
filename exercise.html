@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Requests #1</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      async function fetchCreateListAndAppendTodos() {
+        let response = await fetch(
+          "https://jsonplaceholder.typicode.com/todos"
+        );
+        let json = await response.json();
+
+        let arrayOfTodos = json.map((el) => el.title);
+
+        let divContainer = document.getElementById("container");
+        let ul = document.createElement("ul");
+        divContainer.append(ul);
+
+        function appendTodos(todos) {
+          todos.forEach((todo) => {
+            let li = document.createElement("li");
+            li.innerHTML = todo;
+            ul.append(li);
+          });
+        }
+
+        appendTodos(arrayOfTodos);
+      }
+
+      fetchCreateListAndAppendTodos();
+    </script>
+  </body>
+</html>
