@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Requests #2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      async function exercise() {
+        let response = await fetch(
+          "https://jsonplaceholder.typicode.com/todos/4"
+        );
+
+        let todo4 = await response.json();
+
+        console.log(todo4.title);
+
+        let divContainer = document.getElementById("container");
+        let h2 = document.createElement("h2");
+        h2.innerHTML = todo4.title;
+        divContainer.append(h2);
+
+        let chk = document.createElement("input");
+        chk.type = "checkbox";
+        chk.checked = todo4.completed;
+        divContainer.append(chk);
+      }
+
+      exercise();
+    </script>
+  </body>
+</html>
