@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Requests #3</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="container">
+      <form>
+        <div>
+          <label for="todo-title">Title</label>
+          <input type="text" id="todo-title" required />
+        </div>
+        <div>
+          <label for="todo-completed">Completed</label>
+          <input type="checkbox" id="todo-completed" />
+        </div>
+
+        <button title="submit-todo" type="submit" id="submit-todo">
+          Submit
+        </button>
+      </form>
+    </div>
+    <script>
+      const submit = document.getElementById("submit-todo");
+      submit.addEventListener("click", exercise);
+
+      const URL = "https://jsonplaceholder.typicode.com/posts";
+
+      submit.addEventListener("click", (evt) => {
+        evt.preventDefault();
+      });
+
+      const form = document.querySelector("form");
+
+      async function exercise() {
+        try {
+          let title = document.querySelector("#todo-title").value;
+
+          if (title) {
+            let completed = document.querySelector("#todo-completed").checked;
+
+            let response = await fetch(URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ title: title, completed: completed }),
+            });
+
+            let post = await response.json();
+
+            console.log(post);
+          } else {
+            console.log("Title cannot be empty");
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<!-- Using async and await, implement the necessary code to perform an HTTP POST request. 
+To create a new post, use the following URL: [link](https://jsonplaceholder.typicode.com/posts) 
+(Method: Post). The body of the request must contain a post object with 
+the following information: title and Flag Completed. 
+The post data must be transmitted following the compilation of a form. -->

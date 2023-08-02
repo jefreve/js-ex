@@ -1,0 +1,16 @@
+button {
+  outline: none;
+  background: rgb(55, 55, 55);
+  border-radius: 0.5em;
+  color: white;
+  font-weight: 700;
+}
+button:hover,
+button:focus {
+  background: rgb(91, 91, 91);
+  box-shadow: 0 0 3px rgb(55, 55, 55);
+}
+
+form > div {
+  margin-bottom: 0.5rem;
+}
